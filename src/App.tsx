@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Eye, EyeOff, Lock, Mail } from "lucide-react";
 import "./style.css";
 
@@ -9,9 +9,9 @@ function App() {
   const [message, setMessage] = useState("");
   const [isRegister, setIsRegister] = useState(false); // Toggle between login and register
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = isRegister ? "http://localhost:5000/register" : "http://localhost:5000/login";
+    const url = isRegister ? "http://localhost:5001/register" : "http://localhost:5001/login";
 
     try {
       const response = await fetch(url, {
@@ -21,7 +21,7 @@ function App() {
       });
 
       const data = await response.json();
-      setMessage(data.message);
+      setMessage(data.message || "Something went wrong.");
 
       if (response.ok) {
         alert(isRegister ? "✅ Registration Successful!" : "✅ Login Successful!");
@@ -29,7 +29,7 @@ function App() {
         alert("❌ " + data.message);
       }
     } catch (error) {
-      alert("❌ Something went wrong. Try again.");
+      setMessage("❌ Server not reachable. Check your backend.");
     }
   };
 
@@ -82,7 +82,7 @@ function App() {
             {isRegister ? "Sign Up" : "Sign In"}
           </button>
         </form>
-
+        
         <div className="toggle-auth">
           <p>
             {isRegister ? "Already have an account?" : "Don't have an account?"}{" "}
