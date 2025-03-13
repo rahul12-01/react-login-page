@@ -9,7 +9,7 @@ This project consists of a **React Vite frontend** and a **Node.js + Express bac
 Ensure you have the following installed:
 
 - **Node.js** (v16+ recommended)
-- **npm** or **pnpm**
+- **npm**
 - **MongoDB Atlas** account with a configured cluster
 
 ## Installation
@@ -74,15 +74,6 @@ project-root/
 │── frontend/   # React Vite frontend
 │── package.json  # Root script for concurrent startup
 │── README.md   # This guide
-```
-
-## Environment Variables
-
-Create a `.env` file inside the **backend** directory with:
-
-```
-MONGO_URI=<your-mongodb-atlas-connection-string>
-PORT=5000
 ```
 
 ## Deployment
