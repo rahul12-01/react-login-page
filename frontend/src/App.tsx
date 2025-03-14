@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Eye, EyeOff, Lock, Mail } from "lucide-react";
 import "./style.css";
 
@@ -9,9 +9,12 @@ function App() {
   const [message, setMessage] = useState("");
   const [isRegister, setIsRegister] = useState(false); // Toggle between login and register
 
+  // Backend URL from Render
+  const API_BASE_URL = "https://react-login-pagedb.onrender.com";
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = isRegister ? "http://localhost:5001/register" : "http://localhost:5001/login";
+    const url = isRegister ? `${API_BASE_URL}/register` : `${API_BASE_URL}/login`;
 
     try {
       const response = await fetch(url, {
@@ -78,6 +81,7 @@ function App() {
               </button>
             </div>
           </div>
+
           <button type="submit" className="submit-btn">
             {isRegister ? "Sign Up" : "Sign In"}
           </button>
